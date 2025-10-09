@@ -1,12 +1,3 @@
-// JavaScript Document
-
-/*
-
-TemplateMo 596 Electric Xtra
-
-https://templatemo.com/tm-596-electric-xtra
-
-*/
 
 // Create floating particles
         function createParticles() {
@@ -96,8 +87,10 @@ https://templatemo.com/tm-596-electric-xtra
         });
 
         // Feature tabs functionality
+        // Feature tabs functionality with mobile scroll
         const tabs = document.querySelectorAll('.tab-item');
         const panels = document.querySelectorAll('.content-panel');
+        const contentContainer = document.querySelector('.feature-content');
 
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
@@ -110,6 +103,14 @@ https://templatemo.com/tm-596-electric-xtra
                 // Add active class to clicked tab and corresponding panel
                 tab.classList.add('active');
                 document.getElementById(tabId).classList.add('active');
+
+                // Smooth scroll to content panel for mobile view
+                if (window.innerWidth <= 900) {
+                    contentContainer.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
 
@@ -209,3 +210,28 @@ https://templatemo.com/tm-596-electric-xtra
                 }
             });
         }, 3000);
+
+        // Holographic tilt + shimmer
+        document.querySelectorAll('.card').forEach(card => {
+            const shimmer = document.createElement('div');
+            shimmer.classList.add('shimmer');
+            card.appendChild(shimmer);
+
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * 6;  // tilt amount
+                const rotateY = ((x - centerX) / centerX) * -6;
+
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+                shimmer.style.setProperty('--x', `${x}px`);
+                shimmer.style.setProperty('--y', `${y}px`);
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(-6px)';
+            });
+        });

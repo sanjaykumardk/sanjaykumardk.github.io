@@ -1,14 +1,7 @@
-/*
-
-TemplateMo 596 Electric Xtra
-
-https://templatemo.com/tm-596-electric-xtra
-
-*/
-
 @charset "utf-8";
 
 /* CSS Document */
+
 
 * {
             margin: 0;
@@ -23,6 +16,19 @@ https://templatemo.com/tm-596-electric-xtra
             overflow-x: hidden;
             position: relative;
             font-weight: 400;
+        }
+
+        /* Neon selection effect - solid color for wide browser support */
+        ::selection {
+            background-color: #FF5E00; /* solid neon-orange */
+            color: #ffffff;            /* text color */
+            text-shadow: 0 0 8px #FF5E00, 0 0 10px #00B2FF; /* optional glow */
+        }
+
+        ::-moz-selection { /* Firefox */
+            background-color: #FF5E00;
+            color: #ffffff;
+            text-shadow: 0 0 8px #FF5E00, 0 0 10px #00B2FF;
         }
 
         /* Animated background with hexagon pattern */
@@ -314,7 +320,7 @@ https://templatemo.com/tm-596-electric-xtra
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 80px 20px 20px;
+            padding: 50px 20px 20px;
         }
 
         .hero-content {
@@ -482,9 +488,10 @@ https://templatemo.com/tm-596-electric-xtra
         }
 
         .cta-container {
-            position: absolute;
+            position:absolute;
             bottom: 90px;
             left: 50%;
+            bottom: 20%;
             transform: translateX(-50%);
             display: flex;
             gap: 20px;
@@ -560,7 +567,7 @@ https://templatemo.com/tm-596-electric-xtra
             border-color: #ffffff;
         }
 
-        /* Features Section with Tabs */
+        /* Features Section */
         .features {
             padding: 100px 20px;
             max-width: 1200px;
@@ -568,6 +575,7 @@ https://templatemo.com/tm-596-electric-xtra
             position: relative;
         }
 
+        /* Section Title */
         .section-title {
             font-family: 'Orbitron', monospace;
             font-size: 3rem;
@@ -578,70 +586,105 @@ https://templatemo.com/tm-596-electric-xtra
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
+        /* Features Container: Flex for auto-height adjustment */
         .features-container {
-            display: grid;
-            grid-template-columns: 300px 1fr;
+            display: flex; /* changed from grid to flex */
             gap: 40px;
-            align-items: start;
+            align-items: stretch; /* ensures both columns stretch to same height */
         }
 
+        /* Tabs Container */
         .feature-tabs {
+            flex: 0 0 280px; /* fixed width */
+            display: flex;
+            flex-direction: column;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 94, 0, 0.2);
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 20px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
         }
 
+        /* Individual Tab Items */
         .tab-item {
             padding: 15px 20px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             cursor: pointer;
             border: 1px solid transparent;
-            border-radius: 5px;
+            border-radius: 8px;
             transition: all 0.3s ease;
-            font-weight: 500;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 15px;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            color: #fff;
+            position: relative;
         }
 
+        /* Neon hover effect */
         .tab-item:hover {
-            background: rgba(255, 94, 0, 0.1);
-            border-color: rgba(255, 94, 0, 0.3);
+            background: rgba(255, 94, 0, 0.15);
+            box-shadow: 0 0 10px #FF5E00, 0 0 20px #00B2FF;
         }
 
+        /* Active tab with animated gradient */
         .tab-item.active {
-            background: linear-gradient(45deg, rgba(255, 94, 0, 0.2), rgba(0, 178, 255, 0.2));
-            border-color: #FF5E00;
-            box-shadow: 0 0 20px rgba(255, 94, 0, 0.3);
+            background: linear-gradient(135deg, rgba(255, 94, 0, 0.25), rgba(0, 178, 255, 0.25));
+            border: 1px solid #FF5E00;
+            box-shadow: 0 0 25px #FF5E00, 0 0 30px #00B2FF;
+            animation: glowPulse 2s infinite alternate;
         }
 
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 20px #FF5E00, 0 0 25px #00B2FF; }
+            100% { box-shadow: 0 0 35px #FF5E00, 0 0 40px #00B2FF; }
+        }
+
+        /* Tab icons */
         .tab-icon {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
         }
 
+        .tab-icon img {
+            display: block;
+            max-width: 24px;
+            max-height: 24px;
+        }
+
+
+        /* Content Panel Column */
         .feature-content {
+            flex: 1; /* take remaining width */
+            display: flex;
+            flex-direction: column;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 94, 0, 0.2);
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 40px;
-            backdrop-filter: blur(10px);
-            min-height: 400px;
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
         }
 
+        /* Smooth fade in/out */
         .content-panel {
             display: none;
-            animation: fadeIn 0.5s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
         }
 
         .content-panel.active {
             display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
+        /* Content Headings */
         .content-panel h3 {
             font-family: 'Orbitron', monospace;
             font-size: 2rem;
@@ -649,33 +692,47 @@ https://templatemo.com/tm-596-electric-xtra
             background: linear-gradient(45deg, #ffffff, #FF5E00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
         }
 
+        /* Paragraph */
         .content-panel p {
             line-height: 1.8;
-            opacity: 0.8;
-            margin-bottom: 20px;
+            opacity: 0.85;
+            margin-bottom: 25px;
             font-size: 1.1rem;
         }
 
+        /* Feature list */
         .feature-list {
             list-style: none;
             margin-top: 20px;
+            padding-left: 0;
         }
 
         .feature-list li {
             padding: 10px 0;
-            padding-left: 30px;
+            padding-left: 35px;
             position: relative;
-            opacity: 0.8;
+            opacity: 0.85;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
         }
 
+        /* Custom bullet with glow */
         .feature-list li::before {
             content: '▸';
             position: absolute;
             left: 0;
             color: #FF5E00;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 5px #FF5E00, 0 0 10px #00B2FF;
+        }
+
+        /* List hover glow */
+        .feature-list li:hover {
+            color: #fff;
+            text-shadow: 0 0 5px #FF5E00, 0 0 10px #00B2FF;
         }
 
         /* About Section */
@@ -748,6 +805,17 @@ https://templatemo.com/tm-596-electric-xtra
             box-shadow: 0 0 30px rgba(0, 178, 255, 0.5);
         }
 
+        .about-buttons {
+            position: static !important; 
+            margin-top: 30px;
+            transform: none !important;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+
         /* Alternative graphic for second row */
         .about-graphic-alt {
             width: 300px;
@@ -793,6 +861,187 @@ https://templatemo.com/tm-596-electric-xtra
             50% { transform: rotate(180deg) scale(1.1); }
             100% { transform: rotate(360deg) scale(1); }
         }
+
+        /* Projects Section */ 
+
+        .projects {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .projects-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; 
+        gap: 100px; 
+        margin-top: 40px;
+        }
+
+        .card {
+            position: relative;
+            width: 270px;
+            height: 230px;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* start from top */
+            align-items: center; /* center content horizontally */
+            padding: 14px;
+            gap: 12px;
+            border-radius: 10px;
+            border-color: #000000;
+            border-style: groove;
+            cursor: pointer;
+            color: white;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow:
+                0 0 20px rgba(0, 178, 255, 0.7),
+                0 0 30px rgba(255, 94, 0, 0.5),
+                0 0 45px rgba(0, 178, 255, 0.25),
+                inset 0 0 12px rgba(255, 94, 0, 0.4);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .card-link {
+            text-decoration: none; /* remove underline */
+            color: inherit; /* inherit text color */
+        }
+
+        .project-image {
+            width: 55%;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Base glow layers */
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #FF5E00 5%, #FFB366 40%, #00B2FF 100%);
+            z-index: -2;
+            opacity: 0.8;
+            transition: all 0.5s ease;
+        }
+
+        .card::after {
+            content: "";
+            position: absolute; 
+            inset: 0;
+            border-radius: 12px;
+            background: linear-gradient(120deg, #FF5E00, #00B2FF);
+            transform: scale(0.98);
+            filter: blur(25px);
+            opacity: 0.3;
+            z-index: -3;
+            transition: all 0.5s ease;
+        }
+
+        /* Hover lift */
+        .card:hover {
+            transform: translateY(-8px) rotateX(3deg);
+            box-shadow:
+                0 0 25px rgba(0, 178, 255, 0.9),
+                0 0 35px rgba(255, 94, 0, 0.7),
+                0 0 50px rgba(0, 178, 255, 0.35),
+                inset 0 0 15px rgba(255, 94, 0, 0.5);
+        }
+
+        .card .heading {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: -1px 0;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin: 0;
+        }
+
+        /* Light sweep shimmer */
+        .card::before {
+            mask-image: linear-gradient(120deg, transparent 0%, white 50%, transparent 100%);
+            mask-size: 200%;
+            mask-position: 150%;
+        }
+
+        .card:hover::before {
+            animation: lightSweep 1.2s ease forwards;
+        }
+
+        @keyframes lightSweep {
+            0% {
+                mask-position: 150%;
+                filter: brightness(1);
+            }
+            50% {
+                mask-position: 50%;
+                filter: brightness(1.8);
+            }
+            100% {
+                mask-position: -50%;
+                filter: brightness(1);
+            }
+        }
+
+        /* RGB shift effect */
+        .card:hover {
+            animation: rgbShift 0.8s ease forwards;
+        }
+
+        @keyframes rgbShift {
+            0% {
+                box-shadow: 0 0 15px rgba(0, 178, 255, 0.3),
+                            0 0 10px rgba(255, 94, 0, 0.3);
+            }
+            50% {
+                box-shadow: 3px 0 15px rgba(0, 178, 255, 0.5),
+                            -3px 0 15px rgba(255, 94, 0, 0.5);
+                filter: contrast(1.05) brightness(1.1);
+            }
+            100% {
+                box-shadow: 0 0 25px rgba(0, 178, 255, 0.4),
+                            0 0 20px rgba(255, 94, 0, 0.4);
+            }
+        }
+
+        /* Optional shimmer overlay */
+        .card .shimmer {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.1), transparent 40%);
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            transition: background 0.1s;
+            z-index: 10;
+        }
+
+        .heading {
+        font-size: 20px;
+        text-transform: capitalize;
+        font-weight: 700;
+        }
+
+        .card p:not(.heading) {
+        font-size: 14px;
+        }
+
+        .card p:last-child {
+        color: #FF5E00;
+        font-weight: 600;
+        }
+
 
         /* Contact Section */
         .contact {
@@ -907,6 +1156,21 @@ https://templatemo.com/tm-596-electric-xtra
             font-size: 1.5rem;
         }
 
+        .info-icon img {
+            width: 60%;
+            height: 60%;
+            object-fit: contain;
+            border-radius: 50%;
+            filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .info-icon:hover img {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 8px rgba(255, 94, 0, 0.6)) drop-shadow(0 0 12px rgba(0, 178, 255, 0.6));
+        }
+
+
         .info-details h4 {
             color: #FF5E00;
             margin-bottom: 5px;
@@ -917,42 +1181,88 @@ https://templatemo.com/tm-596-electric-xtra
             opacity: 0.8;
         }
 
-        /* Map Section */
+        .info-icon i {
+            color: #fff; /* white icon on gradient background */
+         }
+
         .map-container {
-            margin-top: 40px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 94, 0, 0.2);
-            border-radius: 10px;
-            padding: 20px;
-            backdrop-filter: blur(10px);
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
+            width: 100%;
+            height: 300px;
+            top: 5%;
+            border-radius: 12px;
             overflow: hidden;
+            border: 1px solid rgba(255,94,0,0.5);
+            box-shadow: 0 0 20px rgba(255,94,0,0.4), 0 0 25px rgba(0,178,255,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .map-placeholder {
-            text-align: center;
-            opacity: 0.6;
+        /* Hover: zoom + glow */
+        .map-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(255,94,0,0.6), 0 0 50px rgba(0,178,255,0.6);
         }
 
-        .map-overlay {
+        /* Map iframe stays full size */
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 12px;
+            transition: filter 0.3s ease;
+        }
+
+        /* Brighten map on hover */
+        .map-container:hover iframe {
+            filter: brightness(1.1) contrast(1.2);
+        }
+
+        /* Overlay PNG */
+        .map-overlay-image {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, transparent 40%, rgba(255, 94, 0, 0.1) 50%, transparent 60%);
-            animation: scan 3s linear infinite;
+            pointer-events: none;
+            mix-blend-mode: lighten;
+            transition: opacity 0.3s ease;
+            opacity: 0.6;
+        }
+
+        /* Optional: make overlay glow more on hover */
+        .map-container:hover .map-overlay-image {
+            opacity: 0.8;
+        }
+
+        /* Scanline effect (hidden by default) */
+        .map-scanline {
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(255,255,255,0.05) 0px,
+                rgba(255,255,255,0.1) 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Activate scanline on hover */
+        .map-container:hover .map-scanline {
+            animation: scan 2s linear infinite;
+            opacity: 0.4;
         }
 
         @keyframes scan {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
         }
-
         /* Footer */
         footer {
             background: rgba(0, 0, 0, 0.8);
@@ -1046,7 +1356,7 @@ https://templatemo.com/tm-596-electric-xtra
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media screen and (max-width: 768px) {
             nav {
                 padding: 15px 20px;
             }
@@ -1100,14 +1410,21 @@ https://templatemo.com/tm-596-electric-xtra
             }
 
             .features-container {
-                grid-template-columns: 1fr;
+                flex-direction: column; /* stack tabs on top of content */
             }
 
             .feature-tabs {
-                display: block;
-                padding: 20px;
-                max-width: 100%;
+                flex: 1 1 auto;
+                width: 100%;
+                margin-bottom: 20px;
             }
+
+            .feature-content {
+                flex: 1 1 auto;
+                width: 100%;
+                padding: 100px 20px;
+            }
+
 
             .tab-item {
                 width: 100%;
@@ -1122,6 +1439,19 @@ https://templatemo.com/tm-596-electric-xtra
             .about-graphic {
                 width: 200px;
                 height: 200px;
+            }
+
+            .about-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                width: 100%;
+            }
+
+            .about-buttons .cta-button {
+                width: 80%;
+                text-align: center;
+                max-width: 300px;
             }
 
             .shape-circle,
